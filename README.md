@@ -6,7 +6,7 @@ Ikuti langkah-langkah di bawah ini untuk meng-clone dan menginstal project Larav
 
 ### 1️⃣ Clone Repository
 ```sh
-git clone https://github.com/username/nama-repo.git
+git clone [https://github.com/username/nama-repo.git](https://github.com/ariefdwisantoso/booking_ps.git)
 cd nama-repo
 ```
 
