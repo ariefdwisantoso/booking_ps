@@ -137,32 +137,34 @@
                         contentType: false,
                         success: function(data) {
                             displayMessage("Booking Created Successfully");
-                            // Check if snap_token is available and redirect to Midtrans
                             var snapToken = data.snap_token;
                             var id        = data.id;
-                            console.log(snapToken);
                             if (snapToken && typeof snapToken === 'string') {
-
                                 window.location.href = `${SITEURL}/rentals/${id}`;
                             } else {
                                 console.error('Invalid snap_token');
                             }
                         },
                         error: function(xhr) {
-                            var errors = xhr.responseJSON.errors;
-                            if (errors) {
-                                if (errors.customer_name) {
-                                    $('#customer_name_error').text(errors.customer_name[0]);
-                                }
-                                if (errors.customer_contact) {
-                                    $('#customer_contact_error').text(errors.customer_contact[0]);
-                                }
-                                if (errors.ps_unit_id) {
-                                    $('#ps_unit_id_error').text(errors.ps_unit_id[0]);
+                            if (xhr.status === 422) { // Jika error validasi termasuk unit tidak tersedia
+                                toastr.error(xhr.responseJSON.message, 'Booking Error');
+                            } else {
+                                var errors = xhr.responseJSON.errors;
+                                if (errors) {
+                                    if (errors.customer_name) {
+                                        $('#customer_name_error').text(errors.customer_name[0]);
+                                    }
+                                    if (errors.customer_contact) {
+                                        $('#customer_contact_error').text(errors.customer_contact[0]);
+                                    }
+                                    if (errors.ps_unit_id) {
+                                        $('#ps_unit_id_error').text(errors.ps_unit_id[0]);
+                                    }
                                 }
                             }
                         }
                     });
+
                 } else {
                     if (!customer_name) {
                         $('#customer_name_error').text('Customer name is required');

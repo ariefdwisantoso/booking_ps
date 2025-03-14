@@ -28,12 +28,20 @@
                                         <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $psUnit->type }}</td>
                                         <td class="px-6 py-4 text-sm text-gray-500">{{ $psUnit->stock }}</td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            <a href="{{ route('ps_units.edit', $psUnit->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
-                                            <form action="{{ route('ps_units.destroy', $psUnit->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
-                                            </form>
+                                            <div class="flex space-x-2">
+                                                <a href="{{ route('ps_units.edit', $psUnit->id) }}" 
+                                                class="px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-700 transition duration-300">
+                                                    Edit
+                                                </a>
+                                                <form id="delete-form-{{ $psUnit->id }}" action="{{ route('ps_units.destroy', $psUnit->id) }}" method="POST" class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" onclick="confirmDelete({{ $psUnit->id }})"
+                                                            class="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-700 transition duration-300">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -44,5 +52,22 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "This action cannot be undone!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, Delete!",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
 </x-app-layout>

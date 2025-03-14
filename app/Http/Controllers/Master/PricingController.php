@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\Pricing;
 use App\Models\PsUnit;
@@ -44,6 +45,7 @@ class PricingController extends Controller
         ]);
 
         Pricing::create($validated);
+        Alert::success('Success', 'Pricing Created Successfully');
         return redirect()->route('pricing.index');
     }
 
@@ -82,7 +84,7 @@ class PricingController extends Controller
 
         // Update data
         $pricing->update($validated);
-
+        Alert::success('Success', 'Pricing Updated Successfully');
         return redirect()->route('pricing.index');
     }
 
@@ -93,6 +95,7 @@ class PricingController extends Controller
     public function destroy(Pricing $pricing)
     {
         $pricing->delete();
+        Alert::success('Success', 'Pricing Deleted Successfully');
         return redirect()->route('pricing.index');
     }
 }

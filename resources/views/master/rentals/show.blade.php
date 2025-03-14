@@ -18,16 +18,32 @@
                             <td class="py-2 px-4">{{ $rentals->customer_name }}</td>
                         </tr>
                         <tr>
+                            <td class="py-2 px-4 font-medium">Customer Contact</td>
+                            <td class="py-2 px-4">{{ $rentals->customer_contact }}</td>
+                        </tr>
+                        <tr>
                             <td class="py-2 px-4 font-medium">Customer Email</td>
                             <td class="py-2 px-4">{{ $rentals->customer_email }}</td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 font-medium">Booking Date</td>
-                            <td class="py-2 px-4">{{ $rentals->start_date }} to {{ $rentals->end_date }}</td>
+                            <td class="py-2 px-4">
+                                {{ \Carbon\Carbon::parse($rentals->start_date)->translatedFormat('l, j F Y') }} 
+                                to 
+                                {{ \Carbon\Carbon::parse($rentals->end_date)->translatedFormat('l, j F Y') }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 font-medium">Cost</td>
+                            <td class="py-2 px-4">Rp {{ number_format($rentals->cost, 0, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 font-medium">Weekend Surcharge</td>
+                            <td class="py-2 px-4">Rp {{ number_format($rentals->weekend_surcharge, 0, ',', '.') }}</td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 font-medium">Total Amount</td>
-                            <td class="py-2 px-4">{{ $rentals->total_cost }}</td>
+                            <td class="py-2 px-4">Rp {{ number_format($rentals->amount, 0, ',', '.') }}</td>
                         </tr>
                     </table>
                     <div class="mt-6">

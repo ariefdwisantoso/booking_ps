@@ -27,24 +27,50 @@
                                 @foreach ($pricing as $price)
                                     <tr class="border-b">
                                         <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $price->psUnit->type }}</td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $price->base_rate }}</td>
-                                        <td class="px-6 py-4 text-sm text-gray-500">{{ $price->weekend_surcharge }}</td>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Rp. {{ number_format($price->base_rate, 0, ',', '.') }}</td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">Rp. {{ number_format($price->weekend_surcharge, 0, ',', '.') }}</td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            <a href="{{ route('pricing.edit', $price->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
-                                            <form action="{{ route('pricing.destroy', $price->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
-                                            </form>
+                                            <div class="flex space-x-2">
+                                                <a href="{{ route('pricing.edit', $price->id) }}" 
+                                                class="px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-700 transition duration-300">
+                                                    Edit
+                                                </a>
+                                                <form id="delete-form-{{ $price->id }}" action="{{ route('pricing.destroy', $price->id) }}" method="POST" class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" onclick="confirmDelete({{ $price->id }})"
+                                                            class="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-700 transition duration-300">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $pricing->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "This action cannot be undone!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, Delete!",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
 </x-app-layout>

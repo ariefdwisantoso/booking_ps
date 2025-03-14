@@ -26,6 +26,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
+            @include('sweetalert::alert')
 
             <!-- Page Heading -->
             @isset($header)
@@ -46,6 +47,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@3.2.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@3.2.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@3.2.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Stack untuk menambahkan script di halaman tertentu -->
         @stack('scripts')

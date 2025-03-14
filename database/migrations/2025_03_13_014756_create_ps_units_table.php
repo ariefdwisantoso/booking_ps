@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ps_units', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['PS4', 'PS5']);
+            $table->string('type')->nullable();
             $table->integer('stock')->default(0); // jumlah stok PS yang tersedia
             $table->timestamps();
         });

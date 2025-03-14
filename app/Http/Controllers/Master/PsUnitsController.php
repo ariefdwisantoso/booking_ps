@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\PsUnit;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class PsUnitsController extends Controller
         ]);
 
         PsUnit::create($validated);
+        Alert::success('Success', 'PS Unit Created Successfully');
         return redirect()->route('ps_units.index');
     }
 
@@ -68,6 +70,7 @@ class PsUnitsController extends Controller
         ]);
 
         $psUnit->update($validated);
+        Alert::success('Success', 'PS Unit Updated Successfully');
         return redirect()->route('ps_units.index');
     }
 
@@ -77,6 +80,7 @@ class PsUnitsController extends Controller
     public function destroy(PsUnit $psUnit)
     {
         $psUnit->delete();
+        Alert::success('Success', 'PS Unit Deleted Successfully');
         return redirect()->route('ps_units.index');
     }
 }
