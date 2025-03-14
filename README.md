@@ -1,85 +1,54 @@
-# 🚀 Laravel 12 Project Setup Guide
+# Laravel 12 Project
 
-Selamat datang di proyek Laravel 12! Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini di komputer Anda.  
+## 🚀 Cara Clone dan Instalasi
 
----
+Ikuti langkah-langkah di bawah ini untuk meng-clone dan menginstal project Laravel 12 di lokal Anda.
 
-## 📥 Clone Repository
-
+### 1️⃣ Clone Repository
 ```sh
 git clone https://github.com/username/nama-repo.git
 cd nama-repo
 ```
 
----
-
-## ⚙️ Install Dependencies
-
-Pastikan Anda sudah menginstal **Composer**, lalu jalankan:
-
+### 2️⃣ Instalasi Dependency
+Jalankan perintah berikut untuk menginstal semua dependency Laravel:
 ```sh
 composer install
 ```
 
----
-
-## 🔧 Konfigurasi `.env`
-
+### 3️⃣ Konfigurasi Environment
 Salin file `.env.example` menjadi `.env` dan sesuaikan konfigurasi database:
-
 ```sh
 cp .env.example .env
 ```
-
-Kemudian **generate application key**:
-
+Kemudian jalankan:
 ```sh
 php artisan key:generate
 ```
 
----
-
-## 🛠️ Setup Database
-
-Pastikan database sudah dibuat, lalu edit file `.env`:
-
+### 4️⃣ Setup Database
+Pastikan database sudah dibuat, lalu jalankan migrasi:
 ```sh
-DB_DATABASE=nama_database
-DB_USERNAME=root
-DB_PASSWORD=
+php artisan migrate --seed
 ```
 
-Setelah itu, jalankan migrasi:
-
+### 5️⃣ Instalasi Frontend (Vite)
+Jalankan perintah berikut untuk menginstal dependency frontend:
 ```sh
-php artisan migrate
+npm install
+```
+Kemudian jalankan Vite:
+```sh
+npm run dev
 ```
 
----
-
-## ▶️ Menjalankan Aplikasi
-
-Jalankan perintah berikut untuk menjalankan aplikasi:
-
+### 6️⃣ Menjalankan Server
+Jalankan perintah berikut untuk menjalankan server Laravel:
 ```sh
 php artisan serve
 ```
-
-Akses proyek di **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
-
----
-
-## 📂 (Opsional) Setup Storage Link
-
-Jika proyek menggunakan file storage, jalankan:
-
-```sh
-php artisan storage:link
-```
+Akses aplikasi di: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
-## 🎉 Selesai!
-
-Proyek Laravel 12 Anda sudah siap! 🚀  
-Happy coding! 😃
+✨ **Selamat mengembangkan!** 🚀
