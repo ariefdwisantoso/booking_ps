@@ -66,9 +66,6 @@ class RentalsController extends Controller
     public function store(Request $request)
     {
         try {
-            // Menambahkan log untuk memastikan data yang diterima
-            \Log::info('Received request data:', $request->all());
-
             // Memeriksa apakah type adalah 'add'
             if ($request->type == 'add') {
                 // Parsing tanggal start dan end
@@ -81,9 +78,6 @@ class RentalsController extends Controller
 
                 // Inisialisasi biaya tambahan akhir
                 $totalCost = $dateDiff * $pricing->base_rate;
-
-                // Variabel weekend surcharge yang diinisialisasi di luar loop
-                $weekendSurcharge = 0;
 
                 // Loop untuk memeriksa setiap hari dalam periode booking
                 for ($date = $startDate; $date <= $endDate; $date->addDay()) {
