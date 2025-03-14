@@ -1,13 +1,13 @@
-# Laravel 12 Project
+# Laravel 12 Project Booking PS
 
 ## 🚀 Cara Clone dan Instalasi
 
-Ikuti langkah-langkah di bawah ini untuk meng-clone dan menginstal project Laravel 12 di lokal Anda.
+Ikuti langkah-langkah di bawah ini untuk meng-clone dan menginstal project di lokal Anda.
 
 ### 1️⃣ Clone Repository
 ```sh
-git clone [https://github.com/username/nama-repo.git](https://github.com/ariefdwisantoso/booking_ps.git)
-cd nama-repo
+git clone https://github.com/ariefdwisantoso/booking_ps.git
+cd booking_ps
 ```
 
 ### 2️⃣ Instalasi Dependency
@@ -29,7 +29,7 @@ php artisan key:generate
 ### 4️⃣ Setup Database
 Pastikan database sudah dibuat, lalu jalankan migrasi:
 ```sh
-php artisan migrate --seed
+php artisan migrate
 ```
 
 ### 5️⃣ Instalasi Frontend (Vite)
