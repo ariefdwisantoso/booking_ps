@@ -88,7 +88,7 @@ class RentalsController extends Controller
                         'message' => 'PS units are not available on that date.',
                     ], 422);
                 }
-                
+                $weekendSurcharge = 0;
                 // Loop untuk memeriksa setiap hari dalam periode booking
                 for ($date = $startDate; $date <= $endDate; $date->addDay()) {
                     // Jika hari adalah Sabtu atau Minggu, tambahkan biaya tambahan

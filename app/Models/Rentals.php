@@ -24,6 +24,6 @@ class Rentals extends Model
 
     public function psUnit()
     {
-        return $this->belongsTo(PsUnit::class, 'ps_unit_id');
+        return $this->hasMany(PsUnit::class, 'ps_unit_id');
     }
 }
